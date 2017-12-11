@@ -163,6 +163,14 @@
     <Compile Include="Migrations\201712081236462_Init1.Designer.cs">
       <DependentUpon>201712081236462_Init1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712111256178_Init3.cs" />
+    <Compile Include="Migrations\201712111256178_Init3.Designer.cs">
+      <DependentUpon>201712111256178_Init3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712111402194_Init4.cs" />
+    <Compile Include="Migrations\201712111402194_Init4.Designer.cs">
+      <DependentUpon>201712111402194_Init4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,6 +217,7 @@
     <Content Include="Views\ParkedVehicles\Details.cshtml" />
     <Content Include="Views\ParkedVehicles\Edit.cshtml" />
     <Content Include="Views\ParkedVehicles\Index.cshtml" />
+    <Content Include="Views\ParkedVehicles\Receipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -232,6 +241,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712081236462_Init1.resx">
       <DependentUpon>201712081236462_Init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111256178_Init3.resx">
+      <DependentUpon>201712111256178_Init3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111402194_Init4.resx">
+      <DependentUpon>201712111402194_Init4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,43 @@
+﻿@model Garage2.Models.ParkedVehicle
+
+@{
+    ViewBag.Title = "Receipt";
+}
+
+<div class="container">
+    <h2>Reciept for @ViewBag.RegNum</h2>
+
+    <div class="well well-lg col-md-4">
+        <table>
+            <tr>
+                <td>
+                    <strong>Time of arrival: </strong>
+                </td>
+                <td>
+                    @ViewBag.ArrivalTime
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Time of departure: </strong>
+                </td>
+                <td>
+                    @ViewBag.Departure
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Time parked: </strong>
+                </td>
+                <td>
+                    @ViewBag.Duration
+                </td>
+            </tr>
+
+        </table>
+        <hr />
+        <strong>Fee: </strong>@ViewBag.TotalPrice
+    </div>
+</div>
+@Html.ActionLink("Back", "Index")
+

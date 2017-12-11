@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Garage2.Models.ParkedVehicle>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Garage";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Park Vehicle", "Create")
 </p>
 <table class="table">
     <tr>
@@ -26,13 +26,16 @@
         <th>
             @Html.DisplayNameFor(model => model.NumberOfWheels)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArrivalTime)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Type)
+            @Html.DisplayFor(modelItem => item.TypeOf)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Registration)
@@ -47,11 +50,46 @@
             @Html.DisplayFor(modelItem => item.NumberOfWheels)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.ArrivalTime)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Unpark", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
 
 </table>
+
+<div id="smallView">
+    <form method="get">
+        <select name="sortOrder" onchange="this.form.submit();">
+            <option selected hidden>Sort Order</option>
+            <option value="Type">Type of vehicle</option>
+            <option value="Registration">Registration Number</option>
+            <option value="Color">Color</option>
+            <option value="Model">Model</option>
+            <option value="NumberOfWheels">Number of wheels</option>
+            <option value="ArrivalTime">Time of arrival</option>
+        </select>
+    </form>
+
+    @foreach (var item in Model)
+    {
+        <div class="well well-sm">
+            <ul class="list-unstyled">
+                <li><strong>@Html.DisplayNameFor(model => model.TypeOf):  </strong>@Html.DisplayFor(modelItem => item.TypeOf)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.Registration): </strong>@Html.DisplayFor(modelItem => item.Registration)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.Color):  </strong>@Html.DisplayFor(modelItem => item.Color)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.Model):  </strong>@Html.DisplayFor(modelItem => item.Model)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.NumberOfWheels):  </strong>@Html.DisplayFor(modelItem => item.NumberOfWheels)</li>
+                <li><strong>@Html.DisplayNameFor(model => model.ArrivalTime):  </strong>@Html.DisplayFor(modelItem => item.ArrivalTime)</li>
+            </ul>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Unpark", "Delete", new { id = item.Id })
+        </div>
+
+    }
+</div>
