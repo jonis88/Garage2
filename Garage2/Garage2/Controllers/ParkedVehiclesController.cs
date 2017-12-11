@@ -140,28 +140,31 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
-            TempData["parkedVehicle"] = parkedVehicle;
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);            
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
-            return RedirectToAction("Reciept");
+            TempData["parkedVehicle"] = parkedVehicle;
+            return RedirectToAction("Receipt");
         }
 
         // GET: Vehicles/Receipt/5
-
         public ActionResult Receipt()
         {
-            ParkedVehicle v = TempData["parkedVehicle"] as ParkedVehicle;
-            ViewBag.Registration = v.Registration;
-            ViewBag.ArrivalTime = v.ArrivalTime;
-            ViewBag.Departure = DateTime.Now;
+            if (TempData["parkedVehicle"] != null)
+            {
+                ParkedVehicle vehi = TempData["parkedVehicle"] as ParkedVehicle;
+                ViewBag.Registration = vehi.Registration;
+                ViewBag.ArrivalTime = vehi.ArrivalTime;
+                ViewBag.Departure = DateTime.Now;
 
-            TimeSpan Duration = ViewBag.Departure.Subtract(ViewBag.ArrivalTime);
-            ViewBag.Duration = String.Format("{0} dagar, {1} timmar, {2} minuter", Duration.Days, Duration.Hours, Duration.Minutes);
-            var price = Math.Floor(Duration.TotalMinutes * 1);
-            ViewBag.TotalPrice = price.ToString("C",
-                  CultureInfo.CreateSpecificCulture("sv-SE"));
+                TimeSpan Duration = ViewBag.Departure.Subtract(ViewBag.ArrivalTime);
+                ViewBag.Duration = String.Format("{0} dagar, {1} timmar, {2} minuter", Duration.Days, Duration.Hours, Duration.Minutes);
+                var price = Math.Floor(Duration.TotalMinutes * 1);
+                ViewBag.TotalPrice = price.ToString("C",
+                      CultureInfo.CreateSpecificCulture("sv-SE"));
 
+                return View();
+            }
             return View();
         }
 

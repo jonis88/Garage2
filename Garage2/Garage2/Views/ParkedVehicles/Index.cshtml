@@ -9,6 +9,17 @@
 <p>
     @Html.ActionLink("Park Vehicle", "Create")
 </p>
+<form method="get">
+    <select name="sortOrder" onchange="this.form.submit();">
+        <option selected hidden>Sort Order</option>
+        <option value="Type">Type of vehicle</option>
+        <option value="Registration">Registration Number</option>
+        <option value="Color">Color</option>
+        <option value="Model">Model</option>
+        <option value="NumberOfWheels">Number of wheels</option>
+        <option value="ArrivalTime">Time of arrival</option>
+    </select>
+</form>
 <table class="table">
     <tr>
         <th>
@@ -62,7 +73,7 @@
 
 </table>
 
-<div id="smallView">
+@*<div id="smallView">
     <form method="get">
         <select name="sortOrder" onchange="this.form.submit();">
             <option selected hidden>Sort Order</option>
@@ -92,4 +103,4 @@
         </div>
 
     }
-</div>
+</div>*@
