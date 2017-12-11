@@ -8,7 +8,7 @@ namespace Garage2.DataAccessLayer
 {
     public class RegisterContext : DbContext
     {
-        public RegisterContext() : base("DefaultConnection") { }
+        public RegisterContext() : base("DefaultConnection2") { }
         public DbSet<Models.ParkedVehicle> ParkedVehicles { get; set; }
     }
 }

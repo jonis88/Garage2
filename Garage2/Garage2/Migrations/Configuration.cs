@@ -4,7 +4,6 @@ namespace Garage2.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using Garage2.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Garage2.DataAccessLayer.RegisterContext>
     {
