@@ -10,5 +10,6 @@ namespace Garage2.DataAccessLayer
     {
         public RegisterContext() : base("DefaultConnection2") { }
         public DbSet<Models.ParkedVehicle> ParkedVehicles { get; set; }
+        public DbSet<Models.Receipt> Receipts { get; set; }
     }
 }

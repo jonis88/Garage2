@@ -6,13 +6,6 @@ using System.Web;
 
 namespace Garage2.Models
 {
-    public enum Type
-    {
-        Car,
-        Motorcycle,
-        Boat,
-        Airplane
-    }
 
     public class ParkedVehicle
     {

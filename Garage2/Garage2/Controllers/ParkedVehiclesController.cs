@@ -163,25 +163,32 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);            
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
+            Receipt receipt = new Receipt();
+            receipt.Registration = parkedVehicle.Registration;
+            receipt.ArrivalTime = parkedVehicle.ArrivalTime;
+            receipt.Departure = DateTime.Now;
+            db.Receipts.Add(receipt);
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
-            TempData["parkedVehicle"] = parkedVehicle;
-            return RedirectToAction("Receipt");
+            int recId = receipt.Id;
+
+            return RedirectToAction("Receipt", new { id = recId });
         }
 
         // GET: Vehicles/Receipt/5
-        public ActionResult Receipt()
+        public ActionResult Receipt(int id)
         {
-            if (TempData["parkedVehicle"] != null)
+            Receipt vehi = db.Receipts.Find(id);
+            if (vehi != null)
             {
-                ParkedVehicle vehi = TempData["parkedVehicle"] as ParkedVehicle;
+                ViewBag.Id = vehi.Id;
                 ViewBag.Registration = vehi.Registration;
                 ViewBag.ArrivalTime = vehi.ArrivalTime;
-                ViewBag.Departure = DateTime.Now;
+                ViewBag.Departure = vehi.Departure;
 
                 TimeSpan Duration = ViewBag.Departure.Subtract(ViewBag.ArrivalTime);
-                ViewBag.Duration = String.Format("{0} dagar, {1} timmar, {2} minuter", Duration.Days, Duration.Hours, Duration.Minutes);
+                ViewBag.Duration = String.Format("{0} days, {1} hours, {2} minutes", Duration.Days, Duration.Hours, Duration.Minutes);
                 var price = Math.Floor(Duration.TotalMinutes * 1);
                 ViewBag.TotalPrice = price.ToString("C",
                       CultureInfo.CreateSpecificCulture("sv-SE"));

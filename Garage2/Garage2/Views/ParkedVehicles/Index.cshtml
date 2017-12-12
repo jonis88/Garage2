@@ -4,10 +4,10 @@
     ViewBag.Title = "Garage";
 }
 
-<h2>Index</h2>
+<h2>Garage</h2>
 
 <p>
-    @Html.ActionLink("Park Vehicle", "Create")
+    <button onclick="location.href='@Url.Action("Create")';return false;">Park Vehicle</button>
 </p>
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
@@ -19,11 +19,11 @@
                 <option value="Model">Model</option>
                 <option value="NumberOfWheels">Number of wheels</option>
             </select>
-                Find by registration:
-                <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-                <input type="submit" value="Search" class="btn btn-default" /> |
-                <a asp-action="Index">Back to Full List</a>
-</p>
+            Find by registration:
+            <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
     </div>
 </form>
 <form method="get">
@@ -37,30 +37,31 @@
         <option value="ArrivalTime">Time of arrival</option>
     </select>
 </form>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TypeOf)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Registration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfWheels)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ArrivalTime)
-        </th>
-        <th></th>
-    </tr>
+<tr>
+        <table class="table">
 
-@foreach (var item in Model) {
+            <th>
+                @Html.DisplayNameFor(model => model.TypeOf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfWheels)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th></th>
+</tr>
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TypeOf)
@@ -81,9 +82,9 @@
             @Html.DisplayFor(modelItem => item.ArrivalTime)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Unpark", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Unpark", "Delete", new { id = item.Id })
         </td>
     </tr>
 }
