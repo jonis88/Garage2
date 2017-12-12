@@ -52,7 +52,7 @@ namespace Garage2.Controllers
                     case "Type":
                         list = list.OrderBy(v => v.TypeOf.ToString());
                         break;
-                    case "Reg":
+                    case "Registration":
                         list = list.OrderBy(v => v.Registration);
                         break;
                     case "Color":
