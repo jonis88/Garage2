@@ -17,14 +17,34 @@ namespace Garage2.Controllers
         private RegisterContext db = new RegisterContext();
 
         // GET: ParkedVehicles
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string searchOption)
         {
-            var param = Request["sortOrder"];
+            var sortBy = Request["sortOrder"];
             var list = db.ParkedVehicles.Select(v => v);
-
-            if (param != null)
+            ViewData["CurrentFilter"] = searchString;
+            if (!String.IsNullOrEmpty(searchOption) && !String.IsNullOrEmpty(searchString))
             {
-                switch (param.ToString())
+                if (searchOption == "Registration")
+                {
+                    list = list.Where(v => v.Registration.Contains(searchString));
+                }
+                else if (searchOption == "Color")
+                {
+                    list = list.Where(v => v.Color.Contains(searchString));
+                }
+                else if (searchOption == "Model")
+                {
+                    list = list.Where(v => v.Model.Contains(searchString));
+                }
+                else if (searchOption == "NumberOfWheels")
+                {
+                    list = list.Where(v => v.Registration.Contains(searchString));
+                }
+            }
+            
+            if (sortBy != null)
+            {
+                switch (sortBy.ToString())
                 {
                     case "Type":
                         list = list.OrderBy(v => v.TypeOf.ToString());
@@ -37,6 +57,9 @@ namespace Garage2.Controllers
                         break;
                     case "Model":
                         list = list.OrderBy(v => v.Model);
+                        break;
+                    case "NumberOfWheels":
+                        list = list.OrderBy(v => v.NumberOfWheels);
                         break;
                     case "Arrival":
                         list = list.OrderBy(v => v.ArrivalTime);

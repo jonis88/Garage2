@@ -9,6 +9,23 @@
 <p>
     @Html.ActionLink("Park Vehicle", "Create")
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <select name="SearchOption">
+                <option selected hidden>Search For</option>
+                <option value="Registration">Registration Number</option>
+                <option value="Color">Color</option>
+                <option value="Model">Model</option>
+                <option value="NumberOfWheels">Number of wheels</option>
+            </select>
+                Find by registration:
+                <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <a asp-action="Index">Back to Full List</a>
+</p>
+    </div>
+</form>
 <form method="get">
     <select name="sortOrder" onchange="this.form.submit();">
         <option selected hidden>Sort Order</option>
@@ -73,34 +90,3 @@
 
 </table>
 
-@*<div id="smallView">
-    <form method="get">
-        <select name="sortOrder" onchange="this.form.submit();">
-            <option selected hidden>Sort Order</option>
-            <option value="Type">Type of vehicle</option>
-            <option value="Registration">Registration Number</option>
-            <option value="Color">Color</option>
-            <option value="Model">Model</option>
-            <option value="NumberOfWheels">Number of wheels</option>
-            <option value="ArrivalTime">Time of arrival</option>
-        </select>
-    </form>
-
-    @foreach (var item in Model)
-    {
-        <div class="well well-sm">
-            <ul class="list-unstyled">
-                <li><strong>@Html.DisplayNameFor(model => model.TypeOf):  </strong>@Html.DisplayFor(modelItem => item.TypeOf)</li>
-                <li><strong>@Html.DisplayNameFor(model => model.Registration): </strong>@Html.DisplayFor(modelItem => item.Registration)</li>
-                <li><strong>@Html.DisplayNameFor(model => model.Color):  </strong>@Html.DisplayFor(modelItem => item.Color)</li>
-                <li><strong>@Html.DisplayNameFor(model => model.Model):  </strong>@Html.DisplayFor(modelItem => item.Model)</li>
-                <li><strong>@Html.DisplayNameFor(model => model.NumberOfWheels):  </strong>@Html.DisplayFor(modelItem => item.NumberOfWheels)</li>
-                <li><strong>@Html.DisplayNameFor(model => model.ArrivalTime):  </strong>@Html.DisplayFor(modelItem => item.ArrivalTime)</li>
-            </ul>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Unpark", "Delete", new { id = item.Id })
-        </div>
-
-    }
-</div>*@
