@@ -175,6 +175,10 @@
     <Compile Include="Migrations\201712120924161_newtable.Designer.cs">
       <DependentUpon>201712120924161_newtable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712121217166_new.cs" />
+    <Compile Include="Migrations\201712121217166_new.Designer.cs">
+      <DependentUpon>201712121217166_new.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
@@ -257,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712120924161_newtable.resx">
       <DependentUpon>201712120924161_newtable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712121217166_new.resx">
+      <DependentUpon>201712121217166_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

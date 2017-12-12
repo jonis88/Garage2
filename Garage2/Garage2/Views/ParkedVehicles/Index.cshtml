@@ -12,14 +12,13 @@
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
+            Find by:
             <select name="SearchOption">
-                <option selected hidden>Search For</option>
-                <option value="Registration">Registration Number</option>
+                <option selected value="Registration">Registration Number</option>
                 <option value="Color">Color</option>
                 <option value="Model">Model</option>
                 <option value="NumberOfWheels">Number of wheels</option>
             </select>
-            Find by registration:
             <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
             <input type="submit" value="Search" class="btn btn-default" /> |
             <a asp-action="Index">Back to Full List</a>

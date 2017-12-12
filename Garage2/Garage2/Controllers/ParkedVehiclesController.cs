@@ -21,6 +21,8 @@ namespace Garage2.Controllers
         {
             var sortBy = Request["sortOrder"];
             var list = db.ParkedVehicles.Select(v => v);
+
+            //Search
             ViewData["CurrentFilter"] = searchString;
             if (!String.IsNullOrEmpty(searchOption) && !String.IsNullOrEmpty(searchString))
             {
@@ -42,6 +44,7 @@ namespace Garage2.Controllers
                 }
             }
             
+            //Order
             if (sortBy != null)
             {
                 switch (sortBy.ToString())
